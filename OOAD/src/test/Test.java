@@ -1,7 +1,9 @@
 package test;
 
-import java.math.BigInteger;
+import java.sql.SQLException;
 import java.util.Date;
+
+import dataAccess.Connector;
 
 public class Test {
 	
@@ -14,7 +16,22 @@ public class Test {
 		Date d3 = new Date(d2.getTime());
 		System.out.println(d3);
 		System.out.println(d3.getTime());
-		BigInteger bInt = new BigInteger("0");
+		
+		try {
+			new Connector();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -6,5 +6,11 @@ public class UserDTO implements UserDAO {
 		
 		return null;
 	}
+	public UserDAO getPasword(String pasword) throws DALException {
+		return null;
+	}
+	public UserDAO getEmail(String email) throws DALException {
+		return null;
+	}
 
 }

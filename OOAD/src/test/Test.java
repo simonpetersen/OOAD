@@ -15,7 +15,6 @@ public class Test {
 		System.out.println(d3);
 		System.out.println(d3.getTime());
 		BigInteger bInt = new BigInteger("0");
-		bInt.
 	}
 
 }

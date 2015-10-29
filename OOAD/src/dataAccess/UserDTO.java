@@ -1,12 +1,15 @@
 package dataAccess;
 
-public class UserDTO implements UserDAO {
+public class UserDTO {
 	
 	int userID;
-	String userName, pasword, email;
-
-	public UserDAO getUser(int userID) throws DALException {
-		return null;
+	String username, password, email;
+	
+	public UserDTO(int userID, String username, String password, String email) {
+		this.userID = userID;
+		this.username = username;
+		this.password = password;
+		this.email = email;
 	}
 
 }

@@ -1,15 +1,19 @@
 package dataAccess;
 
+import java.util.Date;
+
 public class DilemmaDTO {
 
 	int dilemmaID, userID;
 	String title, description;
+	Date date;
 	
-	public DilemmaDTO(int dilemmaID, int userID, String title, String description) {
+	public DilemmaDTO(int dilemmaID, int userID, String title, String description, Date date) {
 		this.dilemmaID = dilemmaID;
 		this.userID = userID;
 		this.title = title;
 		this.description = description;
+		this.date = date;
 	}
 	
 	public int getDilemmaID() {
@@ -26,5 +30,9 @@ public class DilemmaDTO {
 	
 	public String getDescription() {
 		return description;
+	}
+	
+	public Date getDate() {
+		return date;
 	}
 }

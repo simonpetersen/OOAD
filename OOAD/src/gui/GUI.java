@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -10,8 +9,10 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
 
 public class GUI {
 	
@@ -23,11 +24,12 @@ public class GUI {
 	JPanel saveButtonPanel;
 	JPanel seriousnessPanel;
 	JPanel seriousLabelPanel;
+	JPanel timePanel;
 	
 	//Initialisering af Label til forklarende tekst, samt drop-down boxes for kategori og seriøsitet.
 	JLabel seriousLabel;
 	JLabel categoryLabel;
-	JComboBox<String> seriousChoices;
+	JLabel timeLabel;
 	JComboBox<String> categoryChoices;
 	JButton seriousLevel1;
 	JButton seriousLevel2;
@@ -39,6 +41,8 @@ public class GUI {
 	JTextField titleField;
 	JTextArea descriptionTextArea;
 	JButton saveButton;
+	JSpinner timeSpinner;
+	String[] categoryOpt = {"Forhold", "Mode", "Hobby", "Karriere"};
 	
 	public GUI() {
 		//Konstruktion af alle GUI-elementer.
@@ -48,6 +52,7 @@ public class GUI {
 		saveButton = new JButton("Gem");
 		seriousLabel = new JLabel("Seriøsitet: ");
 		categoryLabel = new JLabel("Vælg kategori: ");
+		timeLabel = new JLabel("Svartid: ");
 		
 		seriousLevel1 = new JButton("1");
 		seriousLevel2 = new JButton("2");
@@ -55,9 +60,14 @@ public class GUI {
 		seriousLevel4 = new JButton("4");
 		seriousLevel5 = new JButton("5");
 		
-		seriousnessPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		categoryChoices = new JComboBox<String>(categoryOpt);
+		
+		timeSpinner = new JSpinner(new SpinnerNumberModel(10, 0, 60, 1));
+		
+		seriousnessPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		seriousLabelPanel = new JPanel();
-		categoryPanel = new JPanel();
+		timePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		categoryPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		descriptionPanel = new JPanel();
 		titlePanel = new JPanel();
 		descriptionPanel = new JPanel();
@@ -65,7 +75,7 @@ public class GUI {
 	}
 
 	public void openWindow() {
-		window.setPreferredSize(new Dimension(400, 600));
+		window.setPreferredSize(new Dimension(400, 480));
 		window.pack();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
@@ -74,8 +84,6 @@ public class GUI {
 		descriptionTextArea.setLineWrap(true);
 		descriptionPanel.add(descriptionTextArea);
 		
-		//String[] opt = {"1", "2", "3", "4", "5"};
-		//seriousChoices = new JComboBox<String>(opt);
 		seriousLabelPanel.add(seriousLabel);
 		seriousnessPanel.add(seriousLevel1);
 		seriousnessPanel.add(seriousLevel2);
@@ -86,13 +94,18 @@ public class GUI {
 		saveButtonPanel.add(saveButton);
 		titlePanel.add(titleField);
 		
+		categoryPanel.add(categoryLabel);
+		categoryPanel.add(categoryChoices);
+		
+		timePanel.add(timeLabel);
+		timePanel.add(timeSpinner);
 		
 		window.add(titlePanel);
 		window.add(descriptionPanel);
 		window.add(seriousLabelPanel);
 		window.add(seriousnessPanel);
-		window.add(saveButtonPanel, BorderLayout.SOUTH);
-		
-		
+		window.add(categoryPanel);
+		window.add(timePanel);
+		window.add(saveButtonPanel);
 	}
 }

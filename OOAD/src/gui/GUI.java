@@ -19,6 +19,7 @@ import javax.swing.SpinnerNumberModel;
 public class GUI implements ActionListener {
 	
 	//Initialisering af vindue og JPanels der holder hvert element i interfacet.
+	private int seriousValue;
 	JFrame window;
 	JPanel titlePanel;
 	JPanel descriptionPanel;
@@ -47,11 +48,21 @@ public class GUI implements ActionListener {
 	String[] categoryOpt = {"Forhold", "Mode", "Hobby", "Karriere"};
 	
 	public GUI() {
+		seriousValue = 0;
 		//Konstruktion af alle GUI-elementer.
 		window = new JFrame("DILEMMA");
 		titleField = new JTextField("Overskrift", 30);
 		descriptionTextArea = new JTextArea("Beskrivelse", 8, 30);
-		saveButton = new JButton("Gem");
+		saveButton = new JButton("Gem"); 
+		saveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("Title: "+titleField.getText());
+				System.out.println("Description: "+descriptionTextArea.getText());
+				System.out.println("Category: "+categoryOpt[categoryChoices.getSelectedIndex()]);
+				System.out.println("Time: "+timeSpinner.getValue());
+			}
+		});
 		saveButton.addActionListener(this);
 		seriousLabel = new JLabel("Seriøsitet: ");
 		categoryLabel = new JLabel("Vælg kategori: ");
@@ -59,11 +70,19 @@ public class GUI implements ActionListener {
 		
 		seriousLevel1 = new JButton("1");
 		seriousLevel1.addActionListener(this);
-		seriousLevel1.setActionCommand("Serious = 1");
+		seriousLevel1.setActionCommand("1");
 		seriousLevel2 = new JButton("2");
+		seriousLevel2.addActionListener(this);
+		seriousLevel2.setActionCommand("2");
 		seriousLevel3 = new JButton("3");
+		seriousLevel3.addActionListener(this);
+		seriousLevel3.setActionCommand("3");
 		seriousLevel4 = new JButton("4");
+		seriousLevel4.addActionListener(this);
+		seriousLevel4.setActionCommand("4");
 		seriousLevel5 = new JButton("5");
+		seriousLevel5.addActionListener(this);
+		seriousLevel5.setActionCommand("5");
 		
 		categoryChoices = new JComboBox<String>(categoryOpt);
 		
@@ -115,13 +134,16 @@ public class GUI implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if ("Serious = 1".equals(e.getActionCommand()))
-			System.out.println(seriousLevel1.getText());
-		else {
-			System.out.println("Title: "+titleField.getText());
-			System.out.println("Description: "+descriptionTextArea.getText());
-			System.out.println("Category: "+categoryOpt[categoryChoices.getSelectedIndex()]);
-			System.out.println("Time: "+timeSpinner.getValue());
-		}
+		if (e.getActionCommand().equals("1"))
+			seriousValue = 1;
+		else if (e.getActionCommand().equals("2"))
+			seriousValue = 2;
+		else if (e.getActionCommand().equals("3"))
+			seriousValue = 3;
+		else if (e.getActionCommand().equals("4"))
+			seriousValue = 4;
+		else if (e.getActionCommand().equals("5"))
+			seriousValue = 5;
+		System.out.println(seriousValue);
 	}
 }

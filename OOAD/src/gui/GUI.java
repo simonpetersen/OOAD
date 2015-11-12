@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -15,58 +16,66 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
-public class GUI implements ActionListener {
+public class GUI implements ActionListener, ChangeListener {
 	
 	//Initialisering af vindue og JPanels der holder hvert element i interfacet.
 	private int seriousValue;
-	JFrame window;
-	JPanel titlePanel;
-	JPanel descriptionPanel;
-	JPanel categoryPanel;
-	JPanel saveButtonPanel;
-	JPanel seriousnessPanel;
-	JPanel seriousLabelPanel;
-	JPanel timePanel;
+	private ArrayList<JTextField> answerOptions;
+	private JFrame window;
+	private JPanel titlePanel;
+	private JPanel descriptionPanel;
+	private JPanel categoryPanel;
+	private JPanel saveButtonPanel;
+	private JPanel seriousnessPanel;
+	private JPanel seriousLabelPanel;
+	private JPanel timePanel;
+	private JPanel answerOptionsPanel;
+	private JPanel mainAnswerOptionsPanel; //Container til at holde to panels.
 	
 	//Initialisering af Label til forklarende tekst, samt drop-down boxes for kategori og seriøsitet.
-	JLabel seriousLabel;
-	JLabel categoryLabel;
-	JLabel timeLabel;
-	JComboBox<String> categoryChoices;
-	JButton seriousLevel1;
-	JButton seriousLevel2;
-	JButton seriousLevel3;
-	JButton seriousLevel4;
-	JButton seriousLevel5;
+	private JLabel seriousLabel;
+	private JLabel categoryLabel;
+	private JLabel timeLabel;
+	private JLabel answerOptionsLabel;
+	private JComboBox<String> categoryChoices;
+	private JButton seriousLevel1;
+	private JButton seriousLevel2;
+	private JButton seriousLevel3;
+	private JButton seriousLevel4;
+	private JButton seriousLevel5;
 	
 	//Initialisering af tekstfelter til overskrift og beskrivelse af dilemma, samt knap til at gemme.
-	JTextField titleField;
-	JTextArea descriptionTextArea;
-	JButton saveButton;
-	JSpinner timeSpinner;
-	String[] categoryOpt = {"Forhold", "Mode", "Hobby", "Karriere"};
+	private JTextField titleField;
+	private JTextArea descriptionTextArea;
+	private JButton saveButton;
+	private JSpinner timeSpinner;
+	private JSpinner answerOptionsSpinner;
+	private String[] categoryOpt = {"Forhold", "Mode", "Hobby", "Karriere"};
 	
 	public GUI() {
 		seriousValue = 0;
+		answerOptions = new ArrayList<JTextField>();
 		//Konstruktion af alle GUI-elementer.
 		window = new JFrame("DILEMMA");
 		titleField = new JTextField("Overskrift", 30);
 		descriptionTextArea = new JTextArea("Beskrivelse", 8, 30);
 		saveButton = new JButton("Gem"); 
-		saveButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("Title: "+titleField.getText());
-				System.out.println("Description: "+descriptionTextArea.getText());
-				System.out.println("Category: "+categoryOpt[categoryChoices.getSelectedIndex()]);
-				System.out.println("Time: "+timeSpinner.getValue());
-			}
-		});
-		saveButton.addActionListener(this);
+//		saveButton.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				System.out.println("Title: "+titleField.getText());
+//				System.out.println("Description: "+descriptionTextArea.getText());
+//				System.out.println("Category: "+categoryOpt[categoryChoices.getSelectedIndex()]);
+//				System.out.println("Time: "+timeSpinner.getValue());
+//			}
+//		});
 		seriousLabel = new JLabel("Seriøsitet: ");
 		categoryLabel = new JLabel("Vælg kategori: ");
 		timeLabel = new JLabel("Svartid: ");
+		answerOptionsLabel = new JLabel("Antal svarmuligheder: ");
 		
 		seriousLevel1 = new JButton("1");
 		seriousLevel1.addActionListener(this);
@@ -86,20 +95,27 @@ public class GUI implements ActionListener {
 		
 		categoryChoices = new JComboBox<String>(categoryOpt);
 		
+		answerOptionsSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 5, 1));
+		answerOptionsSpinner.addChangeListener(this);
 		timeSpinner = new JSpinner(new SpinnerNumberModel(10, 0, 60, 1));
 		
 		seriousnessPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		seriousLabelPanel = new JPanel();
 		timePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		categoryPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		descriptionPanel = new JPanel();
+		answerOptionsPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		titlePanel = new JPanel();
 		descriptionPanel = new JPanel();
 		saveButtonPanel = new JPanel();
+		mainAnswerOptionsPanel = new JPanel();
+	}
+	
+	public void setSaveButtonActionListener(ActionListener aL) {
+		saveButton.addActionListener(aL);
 	}
 
 	public void openWindow() {
-		window.setPreferredSize(new Dimension(400, 480));
+		window.setPreferredSize(new Dimension(400, 500));
 		window.pack();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
@@ -118,11 +134,16 @@ public class GUI implements ActionListener {
 		saveButtonPanel.add(saveButton);
 		titlePanel.add(titleField);
 		
+		answerOptionsPanel.add(answerOptionsLabel);
+		answerOptionsPanel.add(answerOptionsSpinner);
+		
 		categoryPanel.add(categoryLabel);
 		categoryPanel.add(categoryChoices);
 		
 		timePanel.add(timeLabel);
 		timePanel.add(timeSpinner);
+		
+		mainAnswerOptionsPanel.add(answerOptionsPanel);
 		
 		window.add(titlePanel);
 		window.add(descriptionPanel);
@@ -130,6 +151,8 @@ public class GUI implements ActionListener {
 		window.add(seriousnessPanel);
 		window.add(categoryPanel);
 		window.add(timePanel);
+		window.add(answerOptionsPanel);
+		window.add(mainAnswerOptionsPanel);
 		window.add(saveButtonPanel);
 	}
 	
@@ -145,5 +168,20 @@ public class GUI implements ActionListener {
 		else if (e.getActionCommand().equals("5"))
 			seriousValue = 5;
 		System.out.println(seriousValue);
+	}
+	
+	public void stateChanged(ChangeEvent e) {
+		int numberOfOptions = (int) answerOptionsSpinner.getValue();
+		System.out.println(numberOfOptions);
+		JPanel tempPanel = new JPanel();
+		JLabel tempLabel = new JLabel(String.valueOf(numberOfOptions));
+		tempPanel.add(tempLabel);
+		mainAnswerOptionsPanel.add(tempPanel);
+		window.validate();
+		window.repaint();
+	}
+	
+	public String getTitleFieldText() {
+		return titleField.getText();
 	}
 }

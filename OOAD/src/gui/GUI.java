@@ -53,7 +53,7 @@ public class GUI implements ActionListener, ChangeListener {
 	private JButton saveButton;
 	private JSpinner timeSpinner;
 	private JSpinner answerOptionsSpinner;
-	private String[] categoryOpt = {"Forhold", "Mode", "Hobby", "Karriere"};
+	private String[] categoryOpt = {"--", "Forhold", "Mode", "Hobby", "Karriere"};
 	
 	public GUI() {
 		seriousValue = 0;
@@ -173,7 +173,13 @@ public class GUI implements ActionListener, ChangeListener {
 	
 	public void stateChanged(ChangeEvent e) {
 		int numberOfOptions = (int) answerOptionsSpinner.getValue();
-		System.out.println(numberOfOptions);
+		if (numberOfOptions < answerOptions.size()) {
+			for (int i=answerOptions.size()-1; i >= numberOfOptions; i--) {
+				mainAnswerOptionsPanel.remove(i);
+				answerOptions.remove(i);
+			}
+		}
+		
 		for (int i=answerOptions.size(); i < numberOfOptions; i++) {
 			JPanel tempPanel = new JPanel();
 			JLabel tempLabel = new JLabel("Mulighed "+(++i)+": ");
@@ -190,4 +196,22 @@ public class GUI implements ActionListener, ChangeListener {
 	public String getTitleFieldText() {
 		return titleField.getText();
 	}
+	
+	public String getDescription() {
+		return descriptionTextArea.getText();
+	}
+	
+	public int getSeriousLevel() {
+		return seriousValue;
+	}
+	
+	public int getTime() {
+		return (int) timeSpinner.getValue();
+	}
+	
+	public String getCategory() {
+		return categoryOpt[categoryChoices.getSelectedIndex()];
+	}
+	
+	
 }

@@ -108,6 +108,7 @@ public class GUI implements ActionListener, ChangeListener {
 		descriptionPanel = new JPanel();
 		saveButtonPanel = new JPanel();
 		mainAnswerOptionsPanel = new JPanel();
+		mainAnswerOptionsPanel.setLayout(new BoxLayout(mainAnswerOptionsPanel, BoxLayout.Y_AXIS));
 	}
 	
 	public void setSaveButtonActionListener(ActionListener aL) {
@@ -115,7 +116,7 @@ public class GUI implements ActionListener, ChangeListener {
 	}
 
 	public void openWindow() {
-		window.setPreferredSize(new Dimension(400, 500));
+		window.setPreferredSize(new Dimension(400, 580));
 		window.pack();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
@@ -173,10 +174,15 @@ public class GUI implements ActionListener, ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		int numberOfOptions = (int) answerOptionsSpinner.getValue();
 		System.out.println(numberOfOptions);
-		JPanel tempPanel = new JPanel();
-		JLabel tempLabel = new JLabel(String.valueOf(numberOfOptions));
-		tempPanel.add(tempLabel);
-		mainAnswerOptionsPanel.add(tempPanel);
+		for (int i=answerOptions.size(); i < numberOfOptions; i++) {
+			JPanel tempPanel = new JPanel();
+			JLabel tempLabel = new JLabel("Mulighed "+(++i)+": ");
+			JTextField tempTextField = new JTextField(24);
+			tempPanel.add(tempLabel);
+			tempPanel.add(tempTextField);
+			mainAnswerOptionsPanel.add(tempPanel);
+			answerOptions.add(tempTextField);
+		}
 		window.validate();
 		window.repaint();
 	}

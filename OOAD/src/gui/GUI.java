@@ -173,6 +173,7 @@ public class GUI implements ActionListener, ChangeListener {
 	
 	public void stateChanged(ChangeEvent e) {
 		int numberOfOptions = (int) answerOptionsSpinner.getValue();
+		
 		if (numberOfOptions < answerOptions.size()) {
 			for (int i=answerOptions.size()-1; i >= numberOfOptions; i--) {
 				mainAnswerOptionsPanel.remove(i);
@@ -191,6 +192,7 @@ public class GUI implements ActionListener, ChangeListener {
 		}
 		window.validate();
 		window.repaint();
+		System.out.println(answerOptions.size());
 	}
 	
 	public String getTitleFieldText() {

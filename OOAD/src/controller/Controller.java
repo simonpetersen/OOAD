@@ -20,7 +20,10 @@ public class Controller implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println(gui.getTitleFieldText());
+		if (gui.checkForMissingInput())
+			System.out.println(gui.checkForMissingInput());
+		else 
+			gui.resetAllFields();
 	}
 	
 }

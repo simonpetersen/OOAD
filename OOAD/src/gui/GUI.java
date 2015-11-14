@@ -33,13 +33,15 @@ public class GUI implements ActionListener, ChangeListener {
 	private JPanel seriousLabelPanel;
 	private JPanel timePanel;
 	private JPanel answerOptionsPanel;
-	private JPanel mainAnswerOptionsPanel; //Container til at holde to panels.
+	private JPanel mainAnswerOptionsPanel; //Container til at holde flere panels.
+	private JPanel informationPanel;
 	
 	//Initialisering af Label til forklarende tekst, samt drop-down boxes for kategori og seriøsitet.
 	private JLabel seriousLabel;
 	private JLabel categoryLabel;
 	private JLabel timeLabel;
 	private JLabel answerOptionsLabel;
+	private JLabel informationLabel;
 	private JComboBox<String> categoryChoices;
 	private JButton seriousLevel1;
 	private JButton seriousLevel2;
@@ -76,6 +78,7 @@ public class GUI implements ActionListener, ChangeListener {
 		categoryLabel = new JLabel("Vælg kategori: ");
 		timeLabel = new JLabel("Svartid: ");
 		answerOptionsLabel = new JLabel("Antal svarmuligheder: ");
+		informationLabel = new JLabel();
 		
 		seriousLevel1 = new JButton("1");
 		seriousLevel1.addActionListener(this);
@@ -97,7 +100,7 @@ public class GUI implements ActionListener, ChangeListener {
 		
 		answerOptionsSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 5, 1));
 		answerOptionsSpinner.addChangeListener(this);
-		timeSpinner = new JSpinner(new SpinnerNumberModel(10, 0, 60, 1));
+		timeSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 60, 1));
 		
 		seriousnessPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 		seriousLabelPanel = new JPanel();
@@ -109,6 +112,7 @@ public class GUI implements ActionListener, ChangeListener {
 		saveButtonPanel = new JPanel();
 		mainAnswerOptionsPanel = new JPanel();
 		mainAnswerOptionsPanel.setLayout(new BoxLayout(mainAnswerOptionsPanel, BoxLayout.Y_AXIS));
+		informationPanel = new JPanel();
 	}
 	
 	public void setSaveButtonActionListener(ActionListener aL) {
@@ -132,7 +136,6 @@ public class GUI implements ActionListener, ChangeListener {
 		seriousnessPanel.add(seriousLevel4);
 		seriousnessPanel.add(seriousLevel5);
 		
-		saveButtonPanel.add(saveButton);
 		titlePanel.add(titleField);
 		
 		answerOptionsPanel.add(answerOptionsLabel);
@@ -146,6 +149,10 @@ public class GUI implements ActionListener, ChangeListener {
 		
 		mainAnswerOptionsPanel.add(answerOptionsPanel);
 		
+		informationPanel.add(informationLabel);
+		
+		saveButtonPanel.add(saveButton);
+		
 		window.add(titlePanel);
 		window.add(descriptionPanel);
 		window.add(seriousLabelPanel);
@@ -154,6 +161,7 @@ public class GUI implements ActionListener, ChangeListener {
 		window.add(timePanel);
 		window.add(answerOptionsPanel);
 		window.add(mainAnswerOptionsPanel);
+		window.add(informationPanel);
 		window.add(saveButtonPanel);
 	}
 	
@@ -174,11 +182,9 @@ public class GUI implements ActionListener, ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		int numberOfOptions = (int) answerOptionsSpinner.getValue();
 		
-		if (numberOfOptions < answerOptions.size()) {
-			for (int i=answerOptions.size()-1; i >= numberOfOptions; i--) {
-				mainAnswerOptionsPanel.remove(i);
-				answerOptions.remove(i);
-			}
+		for (int i=answerOptions.size()-1; i >= numberOfOptions; i--) {
+			mainAnswerOptionsPanel.remove(i);
+			answerOptions.remove(i);			
 		}
 		
 		for (int i=answerOptions.size(); i < numberOfOptions; i++) {
@@ -192,28 +198,53 @@ public class GUI implements ActionListener, ChangeListener {
 		}
 		window.validate();
 		window.repaint();
-		System.out.println(answerOptions.size());
 	}
 	
-	public String getTitleFieldText() {
-		return titleField.getText();
+	public String getTitleFieldText() { return titleField.getText(); }
+	
+	public String getDescription() { return descriptionTextArea.getText(); }
+	
+	public int getSeriousLevel() { return seriousValue; }
+	
+	public int getTime() { return (int) timeSpinner.getValue(); }
+	
+	public String getCategory() { return categoryOpt[categoryChoices.getSelectedIndex()]; }
+	
+	public boolean checkForMissingInput() {
+		if (titleField.getText().isEmpty() || titleField.getText().equals("Overskrift")) {
+			informationLabel.setText("Du mangler at skrive en overskrift!");
+			return false;
+		} else if (seriousValue == 0) {
+			informationLabel.setText("Du mangler at vælge et seriøsitetsniveau!");
+			return false;
+		} else if (categoryChoices.getSelectedIndex() == 0) {
+			informationLabel.setText("Du mangler at vælge en kategori!");
+			return false;
+		} else if ((int) timeSpinner.getValue() == 0) {
+			informationLabel.setText("Du mangler at vælge svartiden!");
+			return false;
+		} else if (checkForEmptyAnswerOptions()) {
+			informationLabel.setText("Du mangler at skrive dine svarmuligheder!");
+			return false;
+		}
+		return true;
 	}
 	
-	public String getDescription() {
-		return descriptionTextArea.getText();
+	public boolean checkForEmptyAnswerOptions() {
+		for (int i=0; i<answerOptions.size(); i++) {
+			if (answerOptions.get(i).getText().isEmpty())
+				return true;
+		}
+		return false;
 	}
 	
-	public int getSeriousLevel() {
-		return seriousValue;
+	public void resetAllFields() {
+		titleField.setText("Overskrift");
+		descriptionTextArea.setText("Beskrivelse");
+		seriousValue = 0;
+		categoryChoices = new JComboBox<String>(categoryOpt);
+		timeSpinner.setValue(0);
+		answerOptionsSpinner.setValue(0);
+		informationLabel.setText("");
 	}
-	
-	public int getTime() {
-		return (int) timeSpinner.getValue();
-	}
-	
-	public String getCategory() {
-		return categoryOpt[categoryChoices.getSelectedIndex()];
-	}
-	
-	
 }

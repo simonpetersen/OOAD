@@ -8,11 +8,11 @@ public class DilemmaDTO {
 	String title, description;
 	Date date;
 	
-	public DilemmaDTO(int userID, String title, String description, Date date) {
-		this.userID = userID;
+	public DilemmaDTO(String title, String description, int minutes) {
+		this.userID = 1;
 		this.title = title;
 		this.description = description;
-		this.date = date;
+		this.date = new Date(new Date().getTime()+minutes*60*60);
 	}
 	
 	public int getDilemmaID() {

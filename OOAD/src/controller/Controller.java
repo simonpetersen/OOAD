@@ -26,7 +26,7 @@ public class Controller implements ActionListener {
 		if (gui.checkForMissingInput()) {
 			//Dilemmaet skal gemmes i DB.
 			DilemmaDTO dilemma = new DilemmaDTO(gui.getTitleFieldText(), gui.getDescription(), gui.getTime());
-			dbManager.saveDilemma(dilemma);
+			dbManager.saveDilemma(dilemma, gui.getOptions());
 			gui.resetAllFields();
 		}	
 	}

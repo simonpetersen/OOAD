@@ -209,6 +209,15 @@ public class GUI implements ActionListener, ChangeListener {
 	
 	public String getCategory() { return categoryOpt[categoryChoices.getSelectedIndex()]; }
 	
+	public ArrayList<String> getOptions() 
+	{ 
+		ArrayList<String> str = new ArrayList<String>();
+		for (int i=0; i<answerOptions.size(); i++) {
+			str.add(answerOptions.get(i).getText());
+		}
+		return str;
+	}
+	
 	public boolean checkForMissingInput() {
 		if (titleField.getText().isEmpty() || titleField.getText().equals("Overskrift")) {
 			informationLabel.setText("Du mangler at skrive en overskrift!");

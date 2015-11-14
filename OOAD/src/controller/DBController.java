@@ -17,9 +17,14 @@ public class DBController {
 	
 	public void saveDilemma(DilemmaDTO dilemma) {
 		try {
+			dilemma.setDilemmaID(dilemmaDB.getNextDilemmaID());
+		} catch (DALException e1) {
+			e1.printStackTrace();
+		}
+		
+		try {
 			dilemmaDB.createDilemma(dilemma);
 		} catch (DALException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

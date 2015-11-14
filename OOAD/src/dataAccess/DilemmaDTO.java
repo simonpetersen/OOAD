@@ -8,8 +8,7 @@ public class DilemmaDTO {
 	String title, description;
 	Date date;
 	
-	public DilemmaDTO(int dilemmaID, int userID, String title, String description, Date date) {
-		this.dilemmaID = dilemmaID;
+	public DilemmaDTO(int userID, String title, String description, Date date) {
 		this.userID = userID;
 		this.title = title;
 		this.description = description;
@@ -18,6 +17,10 @@ public class DilemmaDTO {
 	
 	public int getDilemmaID() {
 		return dilemmaID;
+	}
+	
+	public void setDilemmaID(int ID) {
+		this.dilemmaID = ID;
 	}
 	
 	public int getUserID() {

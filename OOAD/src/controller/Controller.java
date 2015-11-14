@@ -7,9 +7,11 @@ import java.awt.event.ActionListener;
 public class Controller implements ActionListener {
 	
 	GUI gui;
+	DBController dbManager;
 	
 	public Controller() {
 		gui = new GUI();
+		dbManager = new DBController();
 	}
 	
 	public void runApplication() {
@@ -19,11 +21,10 @@ public class Controller implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		if (gui.checkForMissingInput())
-			System.out.println(gui.checkForMissingInput());
-		else 
+		if (gui.checkForMissingInput()) {
+			//Dilemmaet skal gemmes i DB.
 			gui.resetAllFields();
+		}	
 	}
 	
 }

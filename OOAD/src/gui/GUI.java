@@ -176,7 +176,6 @@ public class GUI implements ActionListener, ChangeListener {
 			seriousValue = 4;
 		else if (e.getActionCommand().equals("5"))
 			seriousValue = 5;
-		System.out.println(seriousValue);
 	}
 	
 	public void stateChanged(ChangeEvent e) {

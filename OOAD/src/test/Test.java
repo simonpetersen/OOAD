@@ -1,7 +1,9 @@
 package test;
 
 import gui.GUI;
-import java.util.Date;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Test {
 	
@@ -48,7 +50,15 @@ public class Test {
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
-		
+		GUI gui = new GUI();
+		gui.openWindow();
+		gui.setSaveButtonActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (gui.checkForMissingInput())
+					System.out.println(gui.getOptions());
+			}
+		});
 	}
 
 }

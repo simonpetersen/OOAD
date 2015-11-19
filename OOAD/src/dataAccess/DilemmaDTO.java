@@ -4,14 +4,15 @@ import java.util.Date;
 
 public class DilemmaDTO {
 
-	int dilemmaID, userID;
+	int dilemmaID, userID, seriousness;
 	String title, description;
 	Date date;
 	
-	public DilemmaDTO(String title, String description, int minutes) {
+	public DilemmaDTO(String title, String description, int minutes, int seriousness) {
 		this.userID = 1;
 		this.title = title;
 		this.description = description;
+		this.seriousness = seriousness;
 		this.date = new Date(new Date().getTime()+minutes*60*60);
 	}
 	
@@ -37,5 +38,9 @@ public class DilemmaDTO {
 	
 	public Date getDate() {
 		return date;
+	}
+	
+	public int getSeriousness() {
+		return seriousness;
 	}
 }

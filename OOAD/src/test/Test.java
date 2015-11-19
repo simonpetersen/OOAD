@@ -1,9 +1,10 @@
 package test;
 
-import gui.GUI;
+import java.sql.SQLException;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import dataAccess.Connector;
+import dataAccess.DALException;
+import dataAccess.DBInitialiser;
 
 public class Test {
 	
@@ -17,22 +18,31 @@ public class Test {
 //		System.out.println(d3);
 //		System.out.println(d3.getTime());
 //		
-//		try {
-//			new Connector();
-//		} catch (InstantiationException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (IllegalAccessException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (ClassNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
+		try {
+			new Connector();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		DBInitialiser db = new DBInitialiser();
+		
+		try {
+			db.createDB();
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		DilemmaDAOMySQL d = new DilemmaDAOMySQL();
 //		/*
 //		DilemmaDTO dilemma = new DilemmaDTO(1, 1, "Hvilken fest skal jeg tage til?", 
@@ -50,15 +60,7 @@ public class Test {
 //		} catch (DALException e) {
 //			e.printStackTrace();
 //		}
-		GUI gui = new GUI();
-		gui.openWindow();
-		gui.setSaveButtonActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				if (gui.checkForMissingInput())
-					System.out.println(gui.getOptions());
-			}
-		});
+		
 	}
 
 }

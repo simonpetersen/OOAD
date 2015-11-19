@@ -3,6 +3,7 @@ package controller;
 import java.util.ArrayList;
 
 import dataAccess.DALException;
+import dataAccess.DBInitialiser;
 import dataAccess.DilemmaDAOMySQL;
 import dataAccess.DilemmaDTO;
 import dataAccess.OptionsDAOMySQL;
@@ -12,11 +13,21 @@ public class DBController {
 
 	DilemmaDAOMySQL dilemmaDB;
 	OptionsDAOMySQL optionsDB;
+	DBInitialiser dbCreator;
 	UserDAOMySQL userDB;
 	
 	public DBController() {
 		dilemmaDB = new DilemmaDAOMySQL();
 		userDB = new UserDAOMySQL();
+		dbCreator = new DBInitialiser();
+	}
+	
+	public void createDilemma() {
+		try{
+			dbCreator.createDB();
+		} catch (DALException e) {
+			System.out.println(e.getStackTrace());
+		}
 	}
 	
 	public void saveDilemma(DilemmaDTO dilemma, ArrayList<String> options) {

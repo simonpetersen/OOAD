@@ -19,13 +19,17 @@ public class Controller implements ActionListener {
 	public void runApplication() {
 		gui.openWindow();
 		gui.setSaveButtonActionListener(this);
+		dbManager.createDilemma();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (gui.checkForMissingInput()) {
+			
 			//Dilemmaet skal gemmes i DB.
-			DilemmaDTO dilemma = new DilemmaDTO(gui.getTitleFieldText(), gui.getDescription(), gui.getTime(), gui.getSeriousLevel());
+			DilemmaDTO dilemma = new DilemmaDTO(gui.getTitleFieldText(), gui.getDescription(), gui.getCategory(), 
+					gui.getTime(), gui.getSeriousLevel());
+			
 			dbManager.saveDilemma(dilemma, gui.getOptions());
 			gui.resetAllFields();
 		}	

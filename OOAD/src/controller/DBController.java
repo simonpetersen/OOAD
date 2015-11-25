@@ -49,7 +49,7 @@ public class DBController {
 		try {
 			optionsDB.saveOptions(options, ID);
 		} catch (DALException e) {
-			System.out.println(e.getStackTrace());
+			e.printStackTrace();
 		}
 	}
 	

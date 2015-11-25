@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import dataAccess.Connector;
 import dataAccess.DALException;
-import dataAccess.DBInitialiser;
+import dataAccess.OptionsDAOMySQL;
 
 public class Test {
 	
@@ -34,10 +34,10 @@ public class Test {
 			e.printStackTrace();
 		}
 
-		DBInitialiser db = new DBInitialiser();
+		OptionsDAOMySQL db = new OptionsDAOMySQL();
 		
 		try {
-			db.createDB();
+			System.out.println(db.getNextOptionID());
 		} catch (DALException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

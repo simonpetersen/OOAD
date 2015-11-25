@@ -55,7 +55,7 @@ public class GUI implements ActionListener, ChangeListener {
 	private JButton saveButton;
 	private JSpinner timeSpinner;
 	private JSpinner answerOptionsSpinner;
-	private String[] categoryOpt = {"--", "Forhold", "Mode", "Hobby", "Karriere"};
+	private String[] categoryOpt = {"--", "Personligt", "Forhold", "Mode", "Mad", "Hobby", "Karriere", "Begivenhed", "Andet"};
 	
 	public GUI() {
 		seriousValue = 0;
@@ -197,7 +197,6 @@ public class GUI implements ActionListener, ChangeListener {
 			answerOptions.add(tempTextField);
 		}
 		//GUI genopdateres.
-		System.out.println("Ønske = "+numberOfOptions+", Size = "+answerOptions.size());
 		window.validate();
 		window.repaint();
 	}

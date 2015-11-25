@@ -250,7 +250,7 @@ public class GUI implements ActionListener, ChangeListener {
 		titleField.setText("Overskrift");
 		descriptionTextArea.setText("Beskrivelse");
 		seriousValue = 0;
-		categoryChoices = new JComboBox<String>(categoryOpt);
+		categoryChoices.setSelectedIndex(0);
 		timeSpinner.setValue(0);
 		answerOptionsSpinner.setValue(0);
 		informationLabel.setText("");

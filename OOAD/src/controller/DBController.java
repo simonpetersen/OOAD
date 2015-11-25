@@ -17,9 +17,10 @@ public class DBController {
 	UserDAOMySQL userDB;
 	
 	public DBController() {
+		dbCreator = new DBInitialiser();
 		dilemmaDB = new DilemmaDAOMySQL();
 		userDB = new UserDAOMySQL();
-		dbCreator = new DBInitialiser();
+		optionsDB = new OptionsDAOMySQL();
 	}
 	
 	public void createDilemma() {

@@ -9,6 +9,7 @@ public class OptionsDAOMySQL implements OptionsDAO {
 		for (int i=0; i<options.size(); i++) {
 			Connector.doUpdate("INSERT into options VALUES("+(i+1)+", "
 					+dilemmaID+", "+", "+options.get(i)+", "+0);
+			System.out.println("Element gemt: "+options.get(i));
 		}
 	}
 

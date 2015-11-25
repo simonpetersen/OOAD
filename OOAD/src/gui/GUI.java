@@ -181,20 +181,23 @@ public class GUI implements ActionListener, ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		int numberOfOptions = (int) answerOptionsSpinner.getValue();
 		
-		for (int i=answerOptions.size()-1; i >= numberOfOptions; i--) {
+		for (int i=answerOptions.size()-1; i >= numberOfOptions-1; i--) {
 			mainAnswerOptionsPanel.remove(i);
 			answerOptions.remove(i);			
 		}
 		
 		for (int i=answerOptions.size(); i < numberOfOptions; i++) {
+			int n = i;
 			JPanel tempPanel = new JPanel();
-			JLabel tempLabel = new JLabel("Mulighed "+(++i)+": ");
+			JLabel tempLabel = new JLabel("Mulighed "+(++n)+": ");
 			JTextField tempTextField = new JTextField(24);
 			tempPanel.add(tempLabel);
 			tempPanel.add(tempTextField);
 			mainAnswerOptionsPanel.add(tempPanel);
 			answerOptions.add(tempTextField);
 		}
+		//GUI genopdateres.
+		System.out.println("Ønske = "+numberOfOptions+", Size = "+answerOptions.size());
 		window.validate();
 		window.repaint();
 	}

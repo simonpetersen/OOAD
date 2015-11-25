@@ -181,7 +181,7 @@ public class GUI implements ActionListener, ChangeListener {
 	public void stateChanged(ChangeEvent e) {
 		int numberOfOptions = (int) answerOptionsSpinner.getValue();
 		
-		for (int i=answerOptions.size()-1; i >= numberOfOptions-1; i--) {
+		for (int i=answerOptions.size()-1; i >= numberOfOptions; i--) {
 			mainAnswerOptionsPanel.remove(i);
 			answerOptions.remove(i);			
 		}

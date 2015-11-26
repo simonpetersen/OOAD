@@ -1,7 +1,7 @@
 package main;
 import java.sql.SQLException;
 
-import controller.Controller;
+import controller.ApplicationController;
 import dataAccess.Connector;
 
 public class Application {
@@ -24,7 +24,7 @@ public class Application {
 			e.printStackTrace();
 		}
 		
-		new Controller().runApplication();
+		new ApplicationController().runApplication();
 	}
 
 }

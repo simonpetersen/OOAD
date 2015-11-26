@@ -3,6 +3,8 @@ package dataAccess;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import model.User;
+
 public class UserDAOMySQL implements UserDAO {
 
 	public User getUser(String email) throws DALException {

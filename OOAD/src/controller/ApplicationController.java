@@ -4,14 +4,14 @@ import gui.GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dataAccess.Dilemma;
+import model.Dilemma;
 
-public class Controller implements ActionListener {
+public class ApplicationController implements ActionListener {
 	
 	GUI gui;
 	DBController dbManager;
 	
-	public Controller() {
+	public ApplicationController() {
 		gui = new GUI();
 		dbManager = new DBController();
 	}

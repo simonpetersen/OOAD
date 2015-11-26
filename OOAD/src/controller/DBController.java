@@ -2,10 +2,10 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.Dilemma;
 import dataAccess.DALException;
 import dataAccess.DBInitialiser;
 import dataAccess.DilemmaDAOMySQL;
-import dataAccess.Dilemma;
 import dataAccess.OptionsDAOMySQL;
 import dataAccess.UserDAOMySQL;
 

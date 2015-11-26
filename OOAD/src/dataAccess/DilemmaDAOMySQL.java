@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
+import model.Dilemma;
+
 public class DilemmaDAOMySQL implements DilemmaDAO {
 
 	SimpleDateFormat ft;

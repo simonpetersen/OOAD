@@ -12,12 +12,12 @@ public class DilemmaDAOMySQL implements DilemmaDAO {
 		ft = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	}
 	
-	public DilemmaDTO getDilemma(int dilemmaID) throws DALException {
+	public Dilemma getDilemma(int dilemmaID) throws DALException {
 		
 		return null;
 	}
 
-	public void createDilemma(DilemmaDTO dilemma) throws DALException {
+	public void createDilemma(Dilemma dilemma) throws DALException {
 		Connector.doUpdate("INSERT INTO dilemma VALUES("+dilemma.getDilemmaID()+", "+dilemma.getUserID()
 				+ ", '" + dilemma.getTitle() + "', '" + dilemma.getDescription() + "', " 
 				+dilemma.getSeriousness()+", '"+ft.format(dilemma.getDate()) +"', '"+dilemma.getCategory()+"')");

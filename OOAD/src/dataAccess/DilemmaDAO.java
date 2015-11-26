@@ -1,7 +1,7 @@
 package dataAccess;
 
 public interface DilemmaDAO {
-	DilemmaDTO getDilemma(int dilemmaID) throws DALException;
-	void createDilemma(DilemmaDTO dilemma) throws DALException;
+	Dilemma getDilemma(int dilemmaID) throws DALException;
+	void createDilemma(Dilemma dilemma) throws DALException;
 	int getNextDilemmaID() throws DALException;
 }

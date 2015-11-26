@@ -4,7 +4,7 @@ import gui.GUI;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import dataAccess.DilemmaDTO;
+import dataAccess.Dilemma;
 
 public class Controller implements ActionListener {
 	
@@ -27,7 +27,7 @@ public class Controller implements ActionListener {
 		if (gui.checkForMissingInput()) {
 			
 			//Dilemmaet skal gemmes i DB.
-			DilemmaDTO dilemma = new DilemmaDTO(gui.getTitleFieldText(), gui.getDescription(), gui.getCategory(), 
+			Dilemma dilemma = new Dilemma(gui.getTitleFieldText(), gui.getDescription(), gui.getCategory(), 
 					gui.getTime(), gui.getSeriousLevel());
 			
 			dbManager.saveDilemma(dilemma, gui.getOptions());

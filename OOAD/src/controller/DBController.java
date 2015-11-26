@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import dataAccess.DALException;
 import dataAccess.DBInitialiser;
 import dataAccess.DilemmaDAOMySQL;
-import dataAccess.DilemmaDTO;
+import dataAccess.Dilemma;
 import dataAccess.OptionsDAOMySQL;
 import dataAccess.UserDAOMySQL;
 
@@ -31,7 +31,7 @@ public class DBController {
 		}
 	}
 	
-	public void saveDilemma(DilemmaDTO dilemma, ArrayList<String> options) {
+	public void saveDilemma(Dilemma dilemma, ArrayList<String> options) {
 		int ID=0;
 		try {
 			ID = dilemmaDB.getNextDilemmaID();

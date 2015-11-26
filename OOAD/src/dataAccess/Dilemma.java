@@ -2,13 +2,13 @@ package dataAccess;
 
 import java.util.Date;
 
-public class DilemmaDTO {
+public class Dilemma {
 
 	int dilemmaID, userID, seriousness;
 	String title, description, category;
 	Date date;
 	
-	public DilemmaDTO(String title, String description, String category, int minutes, int seriousness) {
+	public Dilemma(String title, String description, String category, int minutes, int seriousness) {
 		this.userID = 1;
 		this.title = title;
 		this.description = description;

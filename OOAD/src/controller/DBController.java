@@ -7,19 +7,16 @@ import dataAccess.DALException;
 import dataAccess.DBInitialiser;
 import dataAccess.DilemmaDAOMySQL;
 import dataAccess.OptionsDAOMySQL;
-import dataAccess.UserDAOMySQL;
 
 public class DBController {
 
 	DilemmaDAOMySQL dilemmaDB;
 	OptionsDAOMySQL optionsDB;
 	DBInitialiser dbCreator;
-	UserDAOMySQL userDB;
 	
 	public DBController() {
 		dbCreator = new DBInitialiser();
 		dilemmaDB = new DilemmaDAOMySQL();
-		userDB = new UserDAOMySQL();
 		optionsDB = new OptionsDAOMySQL();
 	}
 	

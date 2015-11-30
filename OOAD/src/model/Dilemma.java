@@ -8,6 +8,8 @@ public class Dilemma {
 	String title, description, category;
 	Date date;
 	
+	public Dilemma() { }
+	
 	public Dilemma(String title, String description, String category, int minutes, int seriousness) {
 		this.userID = 1;
 		this.title = title;

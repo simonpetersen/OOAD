@@ -33,22 +33,22 @@ public class OptionsDAOMySQL implements OptionsDAO {
 	
 	public ArrayList<String> getOptions(int dilemmaID) throws DALException{
 		ResultSet rss = Connector.doQuery("SELECT answerOption from option = " + dilemmaID);
-		ArrayList<String> al1;
+		ArrayList<String> al1 = new ArrayList<String>();
 		try {
 			if(!rss.first()) {
 				throw new DALException("" + dilemmaID);
-				while (rss.next()){
+			}	while (rss.next()){
 					al1.add(rss.getString("answerOption"));
 				}
-			}
+			
 				return al1;
 		}
-				catch (DALException e) {
+				catch (Exception e) {
 				throw new DALException(e);
 			}
 		}
 		
 	}
 
-}
+
 

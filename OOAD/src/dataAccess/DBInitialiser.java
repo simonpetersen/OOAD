@@ -18,4 +18,8 @@ public class DBInitialiser {
 		Connector.doUpdate("INSERT INTO user VALUES(1, 'gruppe8@dtu.dk', 'dilemmaKnuser8', '123456')");
 	}
 	
+	public void addDilemma() throws DALException {
+		Connector.doUpdate("INSERT INTO dilemma VALUES(1, 1, 'titel', 'beskrivelse', 1, '2016-01-01 10:00:00', 'Hobby')");
+	}
+	
 }

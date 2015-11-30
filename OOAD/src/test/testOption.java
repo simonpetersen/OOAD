@@ -1,7 +1,5 @@
 package test;
 
-import static org.junit.Assert.fail;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,6 +10,7 @@ import org.junit.Test;
 
 import dataAccess.Connector;
 import dataAccess.DALException;
+import dataAccess.DBInitialiser;
 import dataAccess.OptionsDAOMySQL;
 
 
@@ -20,6 +19,7 @@ public class testOption {
 	private ArrayList<String> arrayList1;
 	private int dilemmaID1;
 	private OptionsDAOMySQL optionsDAO;
+	private DBInitialiser dbCreator;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -42,8 +42,9 @@ public class testOption {
 		arrayList1.add("T");
 		arrayList1.add("D");
 		
-		
-		optionsDAO.saveOptions(arrayList1, dilemmaID1);
+		dbCreator = new DBInitialiser();
+		dbCreator.createDB();
+		dbCreator.addDilemma(); //Der tilføjes et dilemma, så der er et dilemmaID i DB:
 	}
 	
 	@After
@@ -53,10 +54,6 @@ public class testOption {
 
 	}
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	@Test	
 	public void testSave() throws DALException{
 			
@@ -68,11 +65,6 @@ public class testOption {
 		actual = optionsDAO.getOptions(dilemmaID1);
 		
 		Assert.assertEquals(expected, actual);
-		
-	}
-	
-	@Test
-	public void getOption() throws DALException {
 		
 	}
 	

@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import dataAccess.Connector;
+import dataAccess.DALException;
 import dataAccess.DBInitialiser;
 import dataAccess.DilemmaDAOMySQL;
 
@@ -54,7 +55,15 @@ public class DilemmaTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+		try {
+			actual = dilemmaMySQL.getDilemma(0);
+		} catch (DALException e) {
+			e.printStackTrace();
+		}
+		Assert.assertEquals(expected.getTitle(), actual.getTitle());
+		Assert.assertEquals(expected.getDescription(), actual.getDescription());
+		Assert.assertEquals(expected.getCategory(), actual.getCategory());
+		Assert.assertEquals(expected.getSeriousness(), actual.getSeriousness());
 	}
 
 }

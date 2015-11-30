@@ -15,8 +15,15 @@ public class DilemmaDAOMySQL implements DilemmaDAO {
 	}
 	
 	public Dilemma getDilemma(int dilemmaID) throws DALException {
-		
-		return null;
+		ResultSet rs = Connector.doQuery("SELECT * FROM dilemma WHERE dilemmaID = "+dilemmaID);
+		try {
+			if (!rs.first())
+				throw new DALException("Der eksisterer intet dilemma med ID: "
+						+ dilemmaID);
+			return new Dilemma(rs.getString("title"), rs.getString("description"), rs.getString("category"), rs.getInt("seriousness"));
+		} catch (SQLException e) {
+			throw new DALException(e);
+		}
 	}
 
 	public void createDilemma(Dilemma dilemma) throws DALException {

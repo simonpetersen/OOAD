@@ -19,6 +19,14 @@ public class Dilemma {
 		this.date = new Date(new Date().getTime()+minutes*60*60);
 	}
 	
+	public Dilemma(String title, String description, String category, int seriousness) {
+		this.userID = 1;
+		this.title = title;
+		this.description = description;
+		this.category = category;
+		this.seriousness = seriousness;
+	}
+	
 	public int getDilemmaID() {
 		return dilemmaID;
 	}

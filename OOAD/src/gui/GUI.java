@@ -98,7 +98,7 @@ public class GUI implements ActionListener, ChangeListener {
 		
 		categoryChoices = new JComboBox<String>(categoryOpt);
 		
-		answerOptionsSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 5, 1));
+		answerOptionsSpinner = new JSpinner(new SpinnerNumberModel(2, 2, 5, 1));
 		answerOptionsSpinner.addChangeListener(this);
 		timeSpinner = new JSpinner(new SpinnerNumberModel(0, 0, 60, 1));
 		
@@ -152,6 +152,8 @@ public class GUI implements ActionListener, ChangeListener {
 		informationPanel.add(informationLabel);
 		
 		saveButtonPanel.add(saveButton);
+		
+		setInitialNumberOfAnswerOptions();
 		
 		window.add(titlePanel);
 		window.add(descriptionPanel);
@@ -256,5 +258,18 @@ public class GUI implements ActionListener, ChangeListener {
 		timeSpinner.setValue(0);
 		answerOptionsSpinner.setValue(0);
 		informationLabel.setText("");
+	}
+	
+	private void setInitialNumberOfAnswerOptions() {
+		for (int i=answerOptions.size(); i < 2; i++) {
+			int n = i;
+			JPanel tempPanel = new JPanel();
+			JLabel tempLabel = new JLabel("Mulighed "+(++n)+": ");
+			JTextField tempTextField = new JTextField(24);
+			tempPanel.add(tempLabel);
+			tempPanel.add(tempTextField);
+			mainAnswerOptionsPanel.add(tempPanel);
+			answerOptions.add(tempTextField);
+		}
 	}
 }

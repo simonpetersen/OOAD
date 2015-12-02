@@ -65,15 +65,6 @@ public class GUI implements ActionListener, ChangeListener {
 		titleField = new JTextField("Overskrift", 30);
 		descriptionTextArea = new JTextArea("Beskrivelse", 8, 30);
 		saveButton = new JButton("Gem"); 
-//		saveButton.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				System.out.println("Title: "+titleField.getText());
-//				System.out.println("Description: "+descriptionTextArea.getText());
-//				System.out.println("Category: "+categoryOpt[categoryChoices.getSelectedIndex()]);
-//				System.out.println("Time: "+timeSpinner.getValue());
-//			}
-//		});
 		seriousLabel = new JLabel("Seriøsitet: ");
 		categoryLabel = new JLabel("Vælg kategori: ");
 		timeLabel = new JLabel("Svartid: ");
@@ -153,8 +144,6 @@ public class GUI implements ActionListener, ChangeListener {
 		
 		saveButtonPanel.add(saveButton);
 		
-		setInitialNumberOfAnswerOptions();
-		
 		window.add(titlePanel);
 		window.add(descriptionPanel);
 		window.add(seriousLabelPanel);
@@ -164,7 +153,9 @@ public class GUI implements ActionListener, ChangeListener {
 		window.add(answerOptionsPanel);
 		window.add(mainAnswerOptionsPanel);
 		window.add(informationPanel);
-		window.add(saveButtonPanel);
+		window.add(saveButtonPanel); 
+		
+		setInitialNumberOfAnswerOptions();
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -261,7 +252,7 @@ public class GUI implements ActionListener, ChangeListener {
 	}
 	
 	private void setInitialNumberOfAnswerOptions() {
-		for (int i=answerOptions.size(); i < 2; i++) {
+		for (int i=0; i < 2; i++) {
 			int n = i;
 			JPanel tempPanel = new JPanel();
 			JLabel tempLabel = new JLabel("Mulighed "+(++n)+": ");

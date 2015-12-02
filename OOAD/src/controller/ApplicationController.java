@@ -18,10 +18,8 @@ public class ApplicationController implements ActionListener {
 	
 	public void runApplication() {
 		gui.openWindow();
-		/*
 		gui.setSaveButtonActionListener(this);
 		dbManager.createDilemma();
-		*/
 	}
 
 	@Override

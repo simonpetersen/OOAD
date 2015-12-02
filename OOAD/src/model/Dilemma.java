@@ -16,7 +16,7 @@ public class Dilemma {
 		this.description = description;
 		this.category = category;
 		this.seriousness = seriousness;
-		this.date = new Date(new Date().getTime()+minutes*60*60);
+		this.date = new Date(new Date().getTime()+minutes*60*1000);
 	}
 	
 	public Dilemma(String title, String description, String category, int seriousness) {

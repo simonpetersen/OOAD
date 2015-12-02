@@ -14,14 +14,14 @@ public class OptionsDAOMySQL implements OptionsDAO {
 		id = getNextOptionID();
 		
 		for (int i=0; i<options.size(); i++) {
-			Connector.doUpdate("INSERT into options VALUES("+(id+i)+", "
+			Connector.doUpdate("INSERT into answerOptions VALUES("+(id+i)+", "
 					+dilemmaID+", '"+options.get(i)+"', "+0+")");
 		}
 	}
 	
 	@Override
 	public int getNextOptionID() throws DALException {
-		ResultSet rs = Connector.doQuery("SELECT max(optionID) from options;");
+		ResultSet rs = Connector.doQuery("SELECT max(optionID) from answerOptions;");
 		try {
 			if (!rs.first())
 				return 1;
@@ -32,7 +32,7 @@ public class OptionsDAOMySQL implements OptionsDAO {
 	}
 	
 	public ArrayList<String> getOptions(int dilemmaID) throws DALException{
-		ResultSet rss = Connector.doQuery("SELECT answerOption from options WHERE dilemmaID = " + dilemmaID);
+		ResultSet rss = Connector.doQuery("SELECT answerOption from answerOptions WHERE dilemmaID = " + dilemmaID);
 		ArrayList<String> al1 = new ArrayList<String>();
 		try {
 			while (rss.next()){
@@ -40,7 +40,7 @@ public class OptionsDAOMySQL implements OptionsDAO {
 			}			
 			return al1;
 		}
-				catch (Exception e) {
+			catch (SQLException e) {
 				throw new DALException(e);
 			}
 		}

@@ -14,7 +14,7 @@ import dataAccess.DBInitialiser;
 import dataAccess.OptionsDAOMySQL;
 
 
-public class testOption {
+public class OptionsTest {
 	
 	private ArrayList<String> arrayList1;
 	private int dilemmaID1;

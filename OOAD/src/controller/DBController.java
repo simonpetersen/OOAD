@@ -38,7 +38,7 @@ public class DBController {
 		
 		dilemma.setDilemmaID(ID);
 		try {
-			dilemmaDB.createDilemma(dilemma);
+			dilemmaDB.saveDilemma(dilemma);
 		} catch (DALException e) {
 			e.printStackTrace();
 		}

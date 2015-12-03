@@ -51,7 +51,7 @@ public class DilemmaTest {
 		Dilemma expected = new Dilemma("Titel", "Beskrivelse", "Hobby", 60, 2);
 		Dilemma actual = new Dilemma();
 		try {
-			dilemmaMySQL.createDilemma(expected);
+			dilemmaMySQL.saveDilemma(expected);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

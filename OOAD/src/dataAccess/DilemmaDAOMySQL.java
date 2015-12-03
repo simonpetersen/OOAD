@@ -26,7 +26,7 @@ public class DilemmaDAOMySQL implements DilemmaDAO {
 		}
 	}
 
-	public void createDilemma(Dilemma dilemma) throws DALException {
+	public void saveDilemma(Dilemma dilemma) throws DALException {
 		Connector.doUpdate("INSERT INTO dilemma VALUES("+dilemma.getDilemmaID()+", "+dilemma.getUserID()
 				+ ", '" + dilemma.getTitle() + "', '" + dilemma.getDescription() + "', " 
 				+dilemma.getSeriousness()+", '"+ft.format(dilemma.getDate()) +"', '"+dilemma.getCategory()+"')");
